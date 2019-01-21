@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+<div class="container">
+    {{ form_start(form, {'attr': { 'class': 'form'} }) }}
+
+    <div class="form-group">
+        <label>Votre code de vérification</label>
+
+        {{ form_errors(form.code) }}
+        {{ form_widget(form.code) }}
+    </div>
+
+    {% if _csrf_token is defined %}
+        <input type="hidden" name="_csrf_token" value="{{ _csrf_token }}" />
+    {% endif %}
+
+    {% if _username is defined %}
+        <input type="hidden" name="_username" value="{{ _username }}" />
+    {% endif %}
+
+    {% if _password is defined %}
+        <input type="hidden" name="_password" value="{{ _password }}" />
+    {% endif %}
+
+    <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="Valider" />
+
+    {{ form_end(form) }}
+</div>
+{% endblock %}
+
